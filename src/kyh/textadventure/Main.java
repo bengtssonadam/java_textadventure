@@ -42,6 +42,19 @@ public class Main {
         Room theEntrance = new Room("The entrance", "A large entrance to the map.");
         Room aDarkCave = new Room("A dark cave", "A very dark cave without any lights, and it is close to pitch black.");
 
+        // Creating a dagger and adding it to the room theEntrance.
+        Item dagger = new Item("Dagger", "A small but very deadly dagger.");
+        theEntrance.setItem(dagger);
+
+        Chest chest = new Chest("kyh.textadventure.Chest", "A very large chest containg other items");
+        Item shield  = new Item("Shield", "A massiv shield that works as a wall");
+        Item potion  = new Item("Potion", "A potion that restore health");
+        Item sword  = new Item("Sword", "A very sharp sword");
+        chest.addItemToChest(shield);
+        chest.addItemToChest(potion);
+        chest.addItemToChest(sword);
+        aHall.setItem(chest);
+
         Room[][] map = {
                 {pinkRoom, aHall},
                 {theEntrance, aDarkCave}
@@ -57,9 +70,10 @@ public class Main {
         // Här börjar spelloopen
         while(running) {
             // 1. Skriv ut i vilket rum vi är i
-            System.out.println(map[row][col].getName());
-            System.out.println(map[row][col].getDescription());
-
+            // System.out.println(map[row][col].getName());
+            // System.out.println(map[row][col].getDescription());
+            // System.out.println(map[row][col].getItemDescription());
+            System.out.println(map[row][col].toString());
 
             // 2. Läs in kommando från användaren
             System.out.print("> ");
@@ -112,6 +126,11 @@ public class Main {
                 else {
                     System.out.println("You can't go without any direction");
                 }
+            }
+
+            if(command.equalsIgnoreCase("look at item")) {
+                String itemDescription = map[row][col].getItemDescription();
+                System.out.println(itemDescription);
             }
 
             if(command.equalsIgnoreCase("save")) {
