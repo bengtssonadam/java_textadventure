@@ -50,9 +50,9 @@ public class Main {
         Item shield  = new Item("Shield", "A massiv shield that works as a wall");
         Item potion  = new Item("Potion", "A potion that restore health");
         Item sword  = new Item("Sword", "A very sharp sword");
-        chest.addItemToChest(shield);
-        chest.addItemToChest(potion);
-        chest.addItemToChest(sword);
+        chest.addItemsToChest(shield);
+        chest.addItemsToChest(potion);
+        chest.addItemsToChest(sword);
         aHall.setItem(chest);
 
         Room[][] map = {
