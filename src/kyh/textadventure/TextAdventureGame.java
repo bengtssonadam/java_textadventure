@@ -11,6 +11,11 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class TextAdventureGame {
+    int row;
+    int col;
+
+    Room[][] map;
+
     public static void save(int row, int col) {
         File file = new File("./save/saved_game.txt");
         try {
@@ -36,38 +41,41 @@ public class TextAdventureGame {
         }
         return null;
     }
-    public void runGame(){
-    // Initialisering
-    Room pinkRoom = new Room("Pink room", "This is a room with pink walls filled with pink furniture");
-    Room aHall = new Room("A hall", "A large hallway with a fancy rug on the floor");
-    Room theEntrance = new Room("The entrance", "A large entrance to the map.");
-    Room aDarkCave = new Room("A dark cave", "A very dark cave without any lights, and it is close to pitch black.");
+    public void initialisering(){
+        Room pinkRoom = new Room("Pink room", "This is a room with pink walls filled with pink furniture");
+        Room aHall = new Room("A hall", "A large hallway with a fancy rug on the floor");
+        Room theEntrance = new Room("The entrance", "A large entrance to the map.");
+        Room aDarkCave = new Room("A dark cave", "A very dark cave without any lights, and it is close to pitch black.");
 
-    // Creating a dagger and adding it to the room theEntrance.
-    Item dagger = new Item("Dagger", "A small but very deadly dagger.");
+        // Creating a dagger and adding it to the room theEntrance.
+        Item dagger = new Item("Dagger", "A small but very deadly dagger.");
         theEntrance.setItem(dagger);
 
-    // Creating a chest with three items and places it in the hall on the map.
-    Chest chest = new Chest("Chest", "A large chest containing other items");
-    Item shield = new Item("Shield", "A massive shield that works as a wall");
-    Item potion = new Item("Health potion", "A potion that restores your health");
-    Item sword = new Item("Sword", "A very sharp and mighty sword left behind by Conan the Barbarian");
+        // Creating a chest with three items and places it in the hall on the map.
+        Chest chest = new Chest("Chest", "A large chest containing other items");
+        Item shield = new Item("Shield", "A massive shield that works as a wall");
+        Item potion = new Item("Health potion", "A potion that restores your health");
+        Item sword = new Item("Sword", "A very sharp and mighty sword left behind by Conan the Barbarian");
         chest.addItemsToChest(shield);
         chest.addItemsToChest(potion);
         chest.addItemsToChest(sword);
         aHall.setItem(chest);
 
-    Room[][] map = {
-            {pinkRoom, aHall},
-            {theEntrance, aDarkCave}
-    };
-    int row = 1;
-    int col = 0;
-    Scanner input = new Scanner(System.in);
+       map = new Room[][]{
+                {pinkRoom, aHall},
+                {theEntrance, aDarkCave}};
+
+        row = 1;
+        col = 0;
+    }
+
+    public void runGame(){
+
+        Scanner input = new Scanner(System.in);
 
         System.out.println("Welcome to the Text Adventure Game (TAG)");
 
-    boolean running = true;
+        boolean running = true;
 
     // Här börjar spelloopen
         while(running) {
