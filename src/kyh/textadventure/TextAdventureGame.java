@@ -175,6 +175,9 @@ public class TextAdventureGame {
             running = false;
         }
     }
-        System.out.println("Thanks for playing TAG");
+
+}
+public void quit(){
+    System.out.println("Thanks for playing TAG");
 }
 }
