@@ -1,9 +1,5 @@
 package kyh.textadventure;
 
-import kyh.textadventure.Chest;
-import kyh.textadventure.Item;
-import kyh.textadventure.Room;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -79,15 +75,11 @@ public class TextAdventureGame {
 
     // Här börjar spelloopen
         while(running) {
-        // 1. Skriv ut i vilket rum vi är i
-        // System.out.println(map[row][col].getName());
-        // System.out.println(map[row][col].getDescription());
-        // System.out.println(map[row][col].getItemDescription());
-        System.out.println(map[row][col].toString());
-
-        // 2. Läs in kommando från användaren
-        System.out.print("> ");
-        String command = input.nextLine();
+            // 1. Skriv ut i vilket rum vi är i
+            System.out.println(map[row][col].toString());
+            // 2. Läs in kommando från användaren
+            System.out.print("> ");
+            String command = input.nextLine();
 
         // 3. Dela upp kommandot i delar, varje ord blir en sträng i en array
         //    Vi delar upp det inmatade värdet vid varje mellanslag
