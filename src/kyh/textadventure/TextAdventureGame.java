@@ -37,6 +37,35 @@ public class TextAdventureGame {
         }
         return null;
     }
+    private void updatePlayerPosition(String direction) {
+        if(direction.equalsIgnoreCase("north")) {
+            row--;
+            // Kontrollera så vi inte hamnar utanför kartan
+            if(row < 0) {
+                row = 0;
+            }
+        }
+        else if(direction.equalsIgnoreCase("south")) {
+            row++;
+            if(row >= map.length) {
+                row--;
+            }
+        }
+        else if(direction.equalsIgnoreCase("east")) {
+            col++;
+            if(col >= map[row].length) {
+                col--;
+            }
+        }
+        else if(direction.equalsIgnoreCase("west")) {
+            col--;
+            if(col < 0) {
+                col = 0;
+            }
+
+    }
+    }
+
     public void initialisering(){
         Room pinkRoom = new Room("Pink room", "This is a room with pink walls filled with pink furniture");
         Room aHall = new Room("A hall", "A large hallway with a fancy rug on the floor");
@@ -93,56 +122,33 @@ public class TextAdventureGame {
         //      - quit
         if(commandParts[0].equalsIgnoreCase("go")) {
             // Vi har angett go som kommando
-
+            updatePlayerPosition(commandParts[1]);
 
             // Kontrollera att man har skrivit något efter go, alltså en riktning
             if(commandParts.length >= 2) {
                 // Kolla efter riktning
-                if(commandParts[1].equalsIgnoreCase("north")) {
-                    row--;
-                    // Kontrollera så vi inte hamnar utanför kartan
-                    if(row < 0) {
-                        row = 0;
-                    }
-                }
-                else if(commandParts[1].equalsIgnoreCase("south")) {
-                    row++;
-                    if(row >= map.length) {
-                        row--;
-                    }
-                }
-                else if(commandParts[1].equalsIgnoreCase("east")) {
-                    col++;
-                    if(col >= map[row].length) {
-                        col--;
-                    }
-                }
-                else if(commandParts[1].equalsIgnoreCase("west")) {
-                    col--;
-                    if(col < 0) {
-                        col = 0;
-                    }
+
                 }
                 System.out.println("Going " + commandParts[1]);
             }
             else {
                 System.out.println("You can't go without any direction");
             }
-        }
 
-        if(command.equalsIgnoreCase("look at item")) {
-            String itemDescription = map[row][col].getItemDescription();
-            System.out.println(itemDescription);
-        }
 
-        if(command.equalsIgnoreCase("save")) {
-            save(row, col);
-        }
+            if(command.equalsIgnoreCase("look at item")) {
+                String itemDescription = map[row][col].getItemDescription();
+                System.out.println(itemDescription);
+            }
 
-        if(command.equalsIgnoreCase("load")) {
-            String position = load();
-            if(position != null) {
-                String[] pos = position.split(", ");
+            if(command.equalsIgnoreCase("save")) {
+                save(row, col);
+            }
+
+            if(command.equalsIgnoreCase("load")) {
+                String position = load();
+                if(position != null) {
+                    String[] pos = position.split(", ");
                 int oldRow = row;
                 int oldCol = col;
                 row = Integer.parseInt(pos[0]);
